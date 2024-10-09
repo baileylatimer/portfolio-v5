@@ -9,12 +9,13 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-
 import { getUser } from "~/session.server";
 import stylesheet from "~/tailwind.css";
+import customStylesheet from "~/styles/custom.css"; // Add this line
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: customStylesheet }, // Add this line
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 

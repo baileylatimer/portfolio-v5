@@ -1,0 +1,37 @@
+:root {
+  --color-bg: #fff;
+  --color-white: #fff;
+}
+
+@font-face {
+  font-family: 'Missouri';
+  src: url('/fonts/OTMissouri-16mm.otf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/OTNeueMontreal-SemiBoldSemiSqueezed.otf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Neue Montreal', sans-serif;
+  line-height: 108%;
+}
+
+.font-accent {
+  font-family: 'Missouri';
+}
+
+.nav-text {
+  font-size: 16vw; /* Adjust as needed */
+  line-height: 85%;
+}
+
+nav {
+  color: var(--color-white);
+  mix-blend-mode: difference;
+}
