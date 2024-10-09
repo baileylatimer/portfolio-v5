@@ -2,7 +2,7 @@
 export default {
   ignoredRouteFiles: ["**/.*"],
   serverBuildTarget: "netlify",
-  server: "./netlify/functions/server.js",
-  serverModuleFormat: "esm",
+  server: "./server.js",
+  serverModuleFormat: "cjs",
   tailwind: true,
 };

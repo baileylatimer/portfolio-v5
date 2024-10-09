@@ -22,7 +22,7 @@
     "/public/build"
   ],
   "dependencies": {
-    "@netlify/functions": "^1.6.0",
+    "@netlify/functions": "^2.8.2",
     "@netlify/remix-adapter": "^2.5.1",
     "@prisma/client": "^5.20.0",
     "@remix-run/css-bundle": "^2.12.1",
