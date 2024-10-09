@@ -12,13 +12,13 @@ interface HeroProps {
 }
 
 export default function Hero({ bottomElementsScale = 1 }: HeroProps) {
-  const starWidth = 340 * bottomElementsScale;
-  const starHeight = 71 * bottomElementsScale;
-  const flagWidth = 143 * bottomElementsScale;
-  const flagHeight = 44 * bottomElementsScale;
+  const desktopStarWidth = 340 * bottomElementsScale;
+  const desktopStarHeight = 71 * bottomElementsScale;
+  const desktopFlagWidth = 143 * bottomElementsScale;
+  const desktopFlagHeight = 44 * bottomElementsScale;
 
   return (
-    <div className="relative h-screen w-full">
+    <div className="relative h-screen w-full overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -32,27 +32,35 @@ export default function Hero({ bottomElementsScale = 1 }: HeroProps) {
       {/* Gradient Overlay */}
       <div className="absolute bottom-0 left-0 right-0 h-[120px] bg-gradient-to-t from-black to-transparent" />
       
-      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+      {/* Target SVG */}
+      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 scale-50 md:scale-100">
         <SvgTarget />
       </div>
-
+      
       {/* Grid SVG */}
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 scale-50 md:scale-100">
         <SvgGrid />
       </div>
-
+      
       {/* Content */}
       <div className="absolute inset-0 flex items-center justify-center">
         <CustomButton onClick={() => console.log("Let's talk clicked")}>
           LET'S TALK
         </CustomButton>
       </div>
+      
       {/* Bottom elements */}
-      <div className="absolute bottom-4 left-0 right-0 flex justify-between items-center px-4">
-        <Stars width={starWidth} height={starHeight} color="#FF0000"/>
-        <SvgCaFlag width={flagWidth} height={flagHeight} />
-        <div className="scale-x-[-1]">
-          <Stars width={starWidth} height={starHeight} color="#FF0000"/>
+      <div className="absolute bottom-4 left-0 right-0 flex justify-between items-end px-4">
+        <div className="scale-50 md:scale-100 origin-bottom-left">
+          <Stars width={desktopStarWidth} height={desktopStarHeight} color="#FF0000"/>
+        </div>
+        <div className="scale-50 md:scale-100  transform -translate-x-2/4 md:translate-x-0">
+          <SvgCaFlag width={desktopFlagWidth} height={desktopFlagHeight} />
+        </div>
+        <div className="hidden md:block scale-50 md:scale-100 origin-bottom-right ">
+          <div className="scale-x-[-1]">
+            <Stars width={desktopStarWidth} height={desktopStarHeight} color="#FF0000"/>
+          </div>
         </div>
       </div>
     </div>

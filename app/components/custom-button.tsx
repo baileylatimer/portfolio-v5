@@ -10,7 +10,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ children, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="relative inline-block px-12 py-4 text-xl  text-[#DBD7D4] transition-transform hover:scale-105 focus:outline-none"
+      className="relative inline-block px-12 py-4  text-[#DBD7D4] transition-transform hover:scale-105 focus:outline-none"
     >
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 943 350" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_i_5768_366)">
