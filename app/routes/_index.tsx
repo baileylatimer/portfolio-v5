@@ -1,8 +1,8 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { sanityClient } from "~/sanity.server";
-import Navigation from "~/components/Navigation";
-import Hero from '~/components/Hero';
+import Navigation from "~/components/navigation";
+import Hero from '~/components/hero';
 
 type Project = {
   _id: string; 
