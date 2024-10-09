@@ -29,7 +29,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 function AppContent() {
   const { bulletHoles, addBulletHole, addBurstHoles } = useContext(BulletHoleContext);
   const singleShotAudioRef = useRef<HTMLAudioElement>(null);
-  const burstAudioRef = useRef<HTMLAudioElement>(null);
+  const burstAudioRef = useRef<HTMLAudioElement>(null); 
   const [isMouseDown, setIsMouseDown] = useState(false);
   const mouseDownTimerRef = useRef<NodeJS.Timeout | null>(null);
 

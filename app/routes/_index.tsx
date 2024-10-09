@@ -19,7 +19,7 @@ export const loader: LoaderFunction = async () => {
         description
       }
     `);
-    return json({ projects });
+    return json({ projects }); 
   } catch (error) {
     console.error("Error fetching projects:", error);
     return json({ projects: [], error: "Failed to load projects" });
