@@ -5,7 +5,7 @@ import Navigation from "~/components/Navigation";
 import Hero from '~/components/Hero';
 
 type Project = {
-  _id: string;
+  _id: string; 
   title: string;
   description: string;
 };
