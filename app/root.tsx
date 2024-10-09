@@ -1,4 +1,3 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
@@ -10,16 +9,16 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import { getUser } from "~/session.server";
-import stylesheet from "~/tailwind.css";
-import customStylesheet from "~/styles/custom.css";
 import { BulletHoleProvider, BulletHoleContext } from '~/contexts/BulletHoleContext';
 import BulletHole from '~/components/BulletHole';
 import { useContext, useRef, useCallback, useState } from 'react';
 
+import styles from "~/tailwind.css";
+import customStyles from "~/styles/custom.css";
+
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-  { rel: "stylesheet", href: customStylesheet },
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  { rel: "stylesheet", href: styles },
+  { rel: "stylesheet", href: customStyles },
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -29,7 +28,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 function AppContent() {
   const { bulletHoles, addBulletHole, addBurstHoles } = useContext(BulletHoleContext);
   const singleShotAudioRef = useRef<HTMLAudioElement>(null);
-  const burstAudioRef = useRef<HTMLAudioElement>(null); 
+  const burstAudioRef = useRef<HTMLAudioElement>(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const mouseDownTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -68,6 +67,28 @@ function AppContent() {
   }, [isMouseDown, addBulletHole]);
 
   return (
+    <body
+      className="h-full"
+      onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
+      <Outlet />
+      {bulletHoles.map(hole => (
+        <BulletHole key={hole.id} x={hole.x} y={hole.y} />
+      ))}
+      <audio ref={singleShotAudioRef} src="/sounds/gunshot.wav" preload="auto" />
+      <audio ref={burstAudioRef} src="/sounds/burst-fire.wav" preload="auto" />
+      <ScrollRestoration />
+      <Scripts />
+      <LiveReload />
+    </body>
+  );
+}
+
+export default function App() {
+  return (
     <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
@@ -75,31 +96,9 @@ function AppContent() {
         <Meta />
         <Links />
       </head>
-      <body 
-        className="h-full" 
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-      >
-        <Outlet />
-        {bulletHoles.map(hole => (
-          <BulletHole key={hole.id} x={hole.x} y={hole.y} />
-        ))}
-        <audio ref={singleShotAudioRef} src="/sounds/gunshot.wav" preload="auto" />
-        <audio ref={burstAudioRef} src="/sounds/burst-fire.wav" preload="auto" />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
+      <BulletHoleProvider>
+        <AppContent />
+      </BulletHoleProvider>
     </html>
-  );
-}
-
-export default function App() {
-  return (
-    <BulletHoleProvider>
-      <AppContent />
-    </BulletHoleProvider>
   );
 }
