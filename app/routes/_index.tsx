@@ -2,6 +2,7 @@ import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { sanityClient } from "~/sanity.server";
 import Navigation from "~/components/Navigation";
+import Hero from '~/components/Hero';
 
 type Project = {
   _id: string;
@@ -31,6 +32,7 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
+      <Hero />
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8">My Portfolio</h1>
         {error && <p className="text-red-500">{error}</p>}
