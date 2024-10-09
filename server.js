@@ -1,9 +1,7 @@
 import { createRequestHandler } from "@netlify/remix-adapter";
 import * as build from "@remix-run/dev/server-build";
 
-const handler = createRequestHandler({
+export const handler = createRequestHandler({
   build,
   mode: process.env.NODE_ENV,
 });
-
-export { handler };
