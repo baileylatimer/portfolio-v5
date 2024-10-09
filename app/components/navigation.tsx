@@ -24,7 +24,7 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className="w-full px-4 py-4 navigation">
+    <nav className="w-full px-4 py-4 navigation fixed top-0">
       <div className="max-w-screen-2xl mx-auto">
         <div className="flex flex-col">
           <div className="font-accent nav-text">LATIMER</div>
