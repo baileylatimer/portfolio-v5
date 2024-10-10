@@ -1,11 +1,11 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { sanityClient } from "~/sanity.server";
-import Navigation from "~/components/Navigation";
-import Hero from '~/components/Hero';
+import Navigation from "~/components/navigation";
+import Hero from '~/components/hero';
 
 type Project = {
-  _id: string;
+  _id: string; 
   title: string;
   description: string;
 };
@@ -19,7 +19,7 @@ export const loader: LoaderFunction = async () => {
         description
       }
     `);
-    return json({ projects });
+    return json({ projects }); 
   } catch (error) {
     console.error("Error fetching projects:", error);
     return json({ projects: [], error: "Failed to load projects" });
